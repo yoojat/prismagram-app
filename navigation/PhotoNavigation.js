@@ -15,6 +15,6 @@ const PhotoTabs = createMaterialTopTabNavigator(
 );
 
 export default createStackNavigator({
-  PhotoTabs,
-  UploadPhoto
+  PhotoTabs, // MaterialTopTabNavigation(Two Screen)
+  UploadPhoto // OneScreen
 });
