@@ -41,11 +41,11 @@ export default ({ navigation }) => {
 
       if (requestSecret) {
         Alert.alert("Check your email");
-        navigation.navigate("Confirm");
+        navigation.navigate("Confirm", { email: value });
         return;
       } else {
-        Alert.alert("Check your email");
-        navigation.navigate("Confirm");
+        Alert.alert("Account not found");
+        navigation.navigate("SignUp", { email: value });
       }
     } catch (e) {
       console.log(e);
