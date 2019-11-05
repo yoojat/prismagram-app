@@ -1,5 +1,5 @@
 const options = {
-    uri: "http://localhost:4000/graphql"
-  };
-  
-  export default options;
+  uri: "http://localhost:4000"
+};
+
+export default options;
