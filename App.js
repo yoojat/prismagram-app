@@ -21,6 +21,8 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const preLoad = async () => {
+    await AsyncStorage.clear();
+
     try {
       await Font.loadAsync({
         ...Ionicons.font
@@ -39,6 +41,13 @@ export default function App() {
 
       const client = new ApolloClient({
         cache,
+        // 매요청마다 호출됨
+        request: async operation => {
+          const token = await AsyncStorage.getItem("jwt");
+          return operation.setContext({
+            headers: { Authorization: `Bearer ${token}` }
+          });
+        },
         ...apolloClientOptions
       });
       // 캐쉬와 아폴로 옵션을 Apollo Provider에 필요한 client를 만듬
