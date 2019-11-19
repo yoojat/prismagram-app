@@ -1,14 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import SearchBar from "../../components/SearchBar";
-
-const View = styled.View`
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-`;
-
-const Text = styled.Text``;
+import SearchBar from "../../../components/SearchBar";
+import SearchPresenter from "./SearchPresenter";
 
 export default class extends React.Component {
   // static 프로퍼티는 컴포넌트가 정의되기전에 생성됨
@@ -27,7 +19,8 @@ export default class extends React.Component {
     const { navigation } = props;
     // screen이니까 props에 navigation이 전달됨
     this.state = {
-      term: ""
+      term: "",
+      shouldFetch: false
     };
     navigation.setParams({
       term: this.state.term,
@@ -38,17 +31,13 @@ export default class extends React.Component {
 
   onChange = text => {
     const { navigation } = this.props;
-    this.setState({ term: text });
-    navigation.setParams({ term: text });
+    navigation.setParams({ term: text, shouldFetch: false });
   };
   onSubmit = () => {
-    console.log("Submit");
+    this.setState({ shouldFetch: true });
   };
   render() {
-    return (
-      <View>
-        <Text>Search</Text>
-      </View>
-    );
+    const { term, shouldFetch } = this.state;
+    return <SearchPresenter term={term} shouldFetch={shouldFetch} />;
   }
 }
