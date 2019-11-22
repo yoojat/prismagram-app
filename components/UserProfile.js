@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
-const UserProfile = ({}) => null;
+const View = styled.View``;
+const Text = styled.Text``;
+const UserProfile = ({ username }) => (
+  <View>
+    <Text>{username}</Text>
+  </View>
+);
 
 UserProfile.propTypes = {
   id: PropTypes.string.isRequired,
